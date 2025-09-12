@@ -27,7 +27,6 @@
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
-                    <!-- Mobile menu button -->
                     <button type="button" command="--toggle" commandfor="mobile-menu"
                         class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500">
                         <span class="absolute -inset-0.5"></span>

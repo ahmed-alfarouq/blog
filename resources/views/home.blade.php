@@ -23,5 +23,8 @@
             <x-post-card title="The Impact of Technology on the Workplace: How Technology is Changing" />
             <x-post-card title="The Impact of Technology on the Workplace: How Technology is Changing" />
         </article>
+        <button type="button" class="block mx-auto px-8 py-2 border border-primary-border rounded-md bg-transparent hover:bg-primary text-lg md:text-xl text-secondary hover:text-white font-medium cursor-pointer transition-all duration-300">
+            View All
+        </button>
     </section>
 </x-layout>

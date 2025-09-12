@@ -9,6 +9,7 @@
 
 @theme {
     --font-sans: "Work Sans", sans-serif;
+    --color-primary: #4B6BFB;
     --color-secondary: #97989f;
     --color-primary-border: #242535;
 }
