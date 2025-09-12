@@ -55,6 +55,58 @@
     <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {{ $slot }}
     </main>
+    <footer class="bg-secondary-bg mt-10">
+        <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <section class="flex flex-col sm:flex-row gap-15">
+                <div class="space-y-3 w-[280px]">
+                    <h3 class="text-white text-lg font-semibold">About</h3>
+                    <p class="text-secondary">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam
+                    </p>
+                    <div>
+                        <p class="text-white">
+                            <span class="text-secondary">Email: </span>
+                            ahmed.omar.alfrouq@gmail.com
+                        </p>
+                        <p class="text-white">
+                            <span class="text-secondary">Phone: </span>
+                            +20 1018360530
+                        </p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="text-white text-lg font-semibold">Qucik Link</h3>
+                    <nav class="flex flex-col space-y-2">
+                        <x-nav-link href="/" class="!p-0 text-left w-fit">Home</x-nav-link>
+                        <x-nav-link href="/blog" class="!p-0 text-left w-fit">blog</x-nav-link>
+                    </nav>
+                </div>
+            </section>
+            <section class="flex flex-wrap justify-center sm:justify-between items-center gap-10 py-10 mt-10 border-t border-t-[#242535]">
+                <div>
+                    <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo" class="h-10" />
+                    <p class="text-white">© JS Template 2023. <span class="text-secondary">All Rights Reserved.</span>
+                    </p>
+                </div>
+                <div class="flex items-center gap-5">
+                    <a href="/" class="border-r border-primary-border pr-5">
+                        <x-bi-github
+                            class="text-white hover:text-primary size-8 hover:translate-x-1 transition-all duration-300" />
+                    </a>
+                    <a href="/" class="border-r border-primary-border pr-5">
+                        <x-bi-linkedin
+                            class="text-white hover:text-primary size-8 hover:translate-x-1 transition-all duration-300" />
+                    </a>
+                    <a href="/">
+                        <x-bi-youtube
+                            class="text-white hover:text-primary size-8 hover:translate-x-1 transition-all duration-300" />
+                    </a>
+                </div>
+            </section>
+        </section>
+    </footer>
 </body>
 
 </html>
