@@ -3,8 +3,8 @@
     $class = $size == 'small' ? 'text-sm' : 'text-xs sm:text-base';
 @endphp
 
-<span {{ $attributes([
+<a {{ $attributes([
     'class' => $class . ' bg-primary rounded-md px-3 py-2 text-white font-medium',
 ]) }}>
     {{ $slot }}
-</span>
+</a>

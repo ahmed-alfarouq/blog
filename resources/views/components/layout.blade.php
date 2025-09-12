@@ -84,22 +84,30 @@
                     </nav>
                 </div>
             </section>
-            <section class="flex flex-wrap justify-center sm:justify-between items-center gap-10 py-10 mt-10 border-t border-t-[#242535]">
+            <section
+                class="flex flex-wrap justify-center sm:justify-between items-center gap-10 py-10 mt-10 border-t border-t-[#242535]">
                 <div>
                     <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="logo" class="h-10" />
                     <p class="text-white">© JS Template 2023. <span class="text-secondary">All Rights Reserved.</span>
                     </p>
                 </div>
                 <div class="flex items-center gap-5">
-                    <a href="/" class="border-r border-primary-border pr-5">
+                    <a href="https://github.com/ahmed-alfarouq" target="_blank"
+                        class="border-r border-primary-border pr-5">
                         <x-bi-github
                             class="text-white hover:text-primary size-8 hover:translate-x-1 transition-all duration-300" />
                     </a>
-                    <a href="/" class="border-r border-primary-border pr-5">
+                    <a href="https://www.linkedin.com/in/ahmed-alfarouq" target="_blank"
+                        class="border-r border-primary-border pr-5">
                         <x-bi-linkedin
                             class="text-white hover:text-primary size-8 hover:translate-x-1 transition-all duration-300" />
                     </a>
-                    <a href="/">
+                    <a href="https://www.youtube.com/@ahmed-alfarouq" target="_blank"
+                        class="border-r border-primary-border pr-5">
+                        <x-mdi-gmail
+                            class="text-white hover:text-primary size-8 hover:translate-x-1 transition-all duration-300" />
+                    </a>
+                    <a href="https://www.youtube.com/@ahmed-alfarouq" target="_blank">
                         <x-bi-youtube
                             class="text-white hover:text-primary size-8 hover:translate-x-1 transition-all duration-300" />
                     </a>

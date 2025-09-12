@@ -10,10 +10,36 @@ class Post extends Model
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory;
 
+    const IMAGE_IDS = [
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '9',
+        '26',
+        '36',
+        '48',
+        '60',
+        '96',
+        '119',
+        '160',
+        '175',
+        '180',
+        '201',
+        '252',
+    ];
+
     protected $fillable = [
         'title',
         'img',
         'content',
+    ];
+
+    protected $casts = [
+        'tags'
     ];
 
     public function tags()
@@ -21,7 +47,7 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

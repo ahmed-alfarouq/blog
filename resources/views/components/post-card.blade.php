@@ -1,15 +1,24 @@
-@props(['title', 'link' => '/'])
+@props(['title', 'img' => null, 'tags', 'user', 'date', 'link' => '/'])
 
-<div class="flex flex-col gap-5 py-3 px-4 rounded-xl border-1 border-primary-border">
-    <a href="{{ $link }}">
-        <img src="{{ Vite::asset('resources/images/card-img.webp') }}" alt="{{ $title }}" class="rounded-md" />
-    </a>
-    <div class="ml-2">
-        <x-tag size="small">Technology</x-tag>
+@php
+    $firstTags = $tags->take(3);
+@endphp
+
+<div {{ $attributes(['class' => 'flex flex-col gap-5 pt-3 pb-5 px-4 rounded-xl border-1 border-primary-border']) }}>
+    @if ($img)
+        <a href="{{ $link }}" class="aspect-[16/9] w-full rounded-md overflow-hidden">
+            <img src="{{ $img }}" alt="{{ $title }}" class="w-full h-full object-cover" loading="lazy" />
+        </a>
+    @endif
+
+    <div class="flex flex-wrap gap-2 items-center ml-2">
+        @foreach ($firstTags as $tag)
+            <x-tag href="/blog/tags/{{ $tag->id }}" size="small">{{ $tag->name }}</x-tag>
+        @endforeach
     </div>
     <a href="{{ $link }}"
         class="text-white hover:text-primary text-2xl font-semibold leading-tight transition-all duration-200">
         {{ $title }}
     </a>
-    <x-card-footer alt="name" name="Jason Francisco" date="2025-12-25" />
+    <x-card-footer :avatar="$user->avatar" :name="$user->name" :date="$date" />
 </div>
