@@ -11,19 +11,35 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 </head>
 
-<body class="min-h-full bg-gray-900 font-sans">
+<body class="flex flex-col min-h-full bg-gray-900 font-sans">
     <nav class="bg-gray-800/50 py-3">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
-                <div class="flex items-center">
+                <div class="flex items-center w-full">
                     <a href="/" class="shrink-0">
                         <img src="{{ Vite::asset('resources/images/logo.png') }}" alt="Meta Blog" class="h-8" />
                     </a>
-                    <div class="hidden md:block">
+                    <div class="hidden md:flex w-full justify-between items-center">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
                             <x-nav-link href="/blog" :active="request()->is('blog')">blog</x-nav-link>
+                            @auth
+                                <x-nav-link href="/blog/create" :active="request()->is('blog/create')">create post</x-nav-link>
+                            @endauth
                         </div>
+                        <div>
+                            @auth
+                                <form method="POST" action="/logout">
+                                    @csrf
+                                    <x-button type="ghost">Logout</x-button>
+                                </form>
+                            @endauth
+                            @guest
+                                <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
+                                <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+                            @endguest
+                        </div>
+
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
@@ -49,10 +65,25 @@
             class="flex flex-col gap-1 md:hidden px-2 pt-2 pb-3 sm:px-3 transition-all duration-300">
             <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
             <x-nav-link href="/blog" :active="request()->is('blog')">blog</x-nav-link>
-
+            @auth
+                <x-nav-link href="/blog/create" :active="request()->is('blog/create')">create post</x-nav-link>
+                <form method="POST" action="/logout" class="mx-auto">
+                    @csrf
+                    <x-button type="ghost">Logout</x-button>
+                </form>
+            @endauth
+            @guest
+                <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
+                <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+            @endguest
         </el-disclosure>
     </nav>
-    <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    @isset($heading)
+        <header class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            {{ $heading }}
+        </header>
+    @endisset
+    <main class="mx-auto min-h-[calc(100vh-400px)] max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {{ $slot }}
     </main>
     <footer class="bg-secondary-bg mt-10">
@@ -81,6 +112,17 @@
                     <nav class="flex flex-col space-y-2">
                         <x-nav-link href="/" class="!p-0 text-left w-fit">Home</x-nav-link>
                         <x-nav-link href="/blog" class="!p-0 text-left w-fit">blog</x-nav-link>
+                        @auth
+                            <x-nav-link href="/blog/create" class="!p-0 text-left w-fit">create post</x-nav-link>
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <x-button type="ghost">Logout</x-button>
+                            </form>
+                        @endauth
+                        @guest
+                            <x-nav-link href="/login" class="!p-0 text-left w-fit">Login</x-nav-link>
+                            <x-nav-link href="/register" class="!p-0 text-left w-fit">Register</x-nav-link>
+                        @endguest
                     </nav>
                 </div>
             </section>

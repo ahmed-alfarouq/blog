@@ -2,11 +2,10 @@
     $highlightedPost = $posts->first();
 @endphp
 <x-layout>
-    <x-slot:heading><x-title>All Posts</x-title></x-slot:heading>
     <section class="relative min-h-[300px] md:min-h-[600px]">
         <img src="{{ Vite::asset('resources/images/main-banner.webp') }}" alt="" class="rounded-xl w-full" />
         <x-post-card
-            class="w-10/12 sm:w-8/12 md:w-9/12 lg:w-6/12 2xl:w-6/12 absolute -bottom-18 md:-bottom-9 lg:-bottom-15 xl:-bottom-20 left-10 p-4 sm:px-10 sm:py-9 bg-[#181A2A] border border-[#242535] rounded-xl"
+            class="w-10/12 sm:w-8/12 md:w-9/12 lg:w-6/12 absolute -bottom-18 md:-bottom-0 lg:-bottom-15 xl:-bottom-20 left-10 p-4 sm:px-10 sm:py-9 bg-[#181A2A] border border-[#242535] rounded-xl"
             :title="$highlightedPost->title" link="/blog/{{ $highlightedPost->id }}" :tags="$highlightedPost->tags" :user="$highlightedPost->user"
             :date="$highlightedPost->created_at" />
     </section>

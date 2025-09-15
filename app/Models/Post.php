@@ -36,6 +36,7 @@ class Post extends Model
         'title',
         'img',
         'content',
+        'user_id',
     ];
 
     protected $casts = [

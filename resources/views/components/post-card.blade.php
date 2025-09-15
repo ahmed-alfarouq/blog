@@ -1,4 +1,4 @@
-@props(['title', 'img' => null, 'tags', 'user', 'date', 'link' => '/'])
+@props(['title', 'img' => null, 'tags' => collect(), 'user', 'date', 'link' => '/'])
 
 @php
     $firstTags = $tags->take(3);
