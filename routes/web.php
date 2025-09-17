@@ -15,7 +15,7 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/blog', 'index');
     Route::get('/blog/create', 'create')->middleware('auth');
     Route::get('/blog/{post}', 'show');
-    
+
     Route::post('/blog', 'store');
     Route::get('/blog/{post}/edit', 'edit')
         ->middleware('auth')
@@ -28,6 +28,9 @@ Route::controller(PostController::class)->group(function () {
 Route::controller(AuthController::class)->group(function () {
     Route::view('/login', 'auth.login')->name('login');
     Route::view('/register', 'auth.register');
+    Route::view('/verify-otp', 'auth.otp');
+
+    Route::post('/otp', 'verifyOTP');
 
     Route::post('/login', 'login')->middleware('throttle:auth');
     Route::post('/register', 'register')->middleware('throttle:auth');

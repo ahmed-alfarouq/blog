@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendOtpJob;
+use App\Models\OTP;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,12 +36,44 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended();
+        if (Auth::validate($credentials)) {
+            $user = User::firstWhere('email', $request->email);
+            $otp = OTP::generate($user->id, 5);
+
+            session(['otp_user_id' => $user->id, 'otp_resend_available_at' => now()->addMinutes(1)]);
+
+            SendOtpJob::dispatch($user, $otp->code, 5);
+
+            return redirect('/verify-otp')->with('userId', $user->id);
         };
 
         return back()->withErrors(['login' => 'The provided credentials do not match our records.'])->onlyInput('email');
+    }
+
+    public function verifyOTP(Request $request)
+    {
+        $validated = $request->validate([
+            'code' => 'required|digits:6',
+        ]);
+        $userId = session('otp_user_id');
+
+        if (!$userId) {
+            return back()->withErrors(['otp' => 'Session expired. Please request a new OTP.']);
+        }
+
+        $otp = Otp::where('user_id', $request->user_id)
+            ->where('code', $request->code)
+            ->latest()
+            ->first();
+
+        if ($otp && $otp->isValid()) {
+            Auth::loginUsingId($request->user_id);
+            $request->session()->regenerate();
+
+            return redirect()->intended('/blog');
+        }
+
+        return back()->withErrors(['otp' => 'Invalid or expired OTP.']);
     }
 
     public function logout()
